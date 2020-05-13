@@ -3,14 +3,16 @@ import Axios from "axios";
 
 import Page from "./Page";
 
+Axios.defaults.baseURL = "http://localhost:8080";
+
 const HomeGuest = () => {
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
     try {
-      await Axios.post("https//localhost:8080/register", {
+      await Axios.post("/register", {
         username: "test",
         email: "test@test.com",
-        password: "qwertyuiopas",
+        password: "qwertyuiopklklas",
       });
       console.log("User was successfully created.");
     } catch (error) {
