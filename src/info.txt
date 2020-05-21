@@ -1,0 +1,8 @@
+1. HeaderLoggedOut.txs
+    a. W funkcji handleSubmit przekazujemy login details do localStorage -
+        localStorage.setItem("complexAppToken", response.data.token);
+        localStorage.setItem("complexAppUsername", response.data.username);
+        localStorage.setItem("complexAppAvatar", response.data.avatar);
+
+2. Header.tsx 
+    a. 
