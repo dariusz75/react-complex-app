@@ -1,13 +1,1 @@
-Renderowanie strony homepage w zaleznoaci od logowania
-
-1. App.tsx
-    a. Przenosimy loggedIn state z Header.tsx aby miec do niego globalny dostep
-    b. Teraz musimy umozliwic przekazanie loggedIn state w dol po drzewie komponentow az do komponentu
-        w ktorym bedziemy ten stan manipulowac. 
-        Zaczynamy od zadeklarowania propsow w tagu Header - <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-    d. Implementujemy warunek dla renderowania odpowiedniej strony -
-        {loggedIn ? <Home /> : <HomeGuest />}
-
-2. Header.tsx
-    c. Przekazujemy loggedIn i setLoggedIn jako props z kopmonentu App
-    
+All logic in Createpost component

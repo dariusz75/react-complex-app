@@ -3,8 +3,6 @@ import Axios from "axios";
 
 import Page from "./Page";
 
-Axios.defaults.baseURL = "http://localhost:8080";
-
 const HomeGuest = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
