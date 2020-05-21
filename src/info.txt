@@ -1,18 +1,13 @@
-1. HeaderLoggedOut.txs
-    a. W funkcji handleSubmit przekazujemy login details do localStorage -
-        localStorage.setItem("complexAppToken", response.data.token);
-        localStorage.setItem("complexAppUsername", response.data.username);
-        localStorage.setItem("complexAppAvatar", response.data.avatar);
+Renderowanie strony homepage w zaleznoaci od logowania
 
-2. Header.tsx 
-    a. Zmieniamy ustawienia statu loggedIn na wartosc complexAppToken pobraana z localStorage -
-    const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("complexAppToken")));
+1. App.tsx
+    a. Przenosimy loggedIn state z Header.tsx aby miec do niego globalny dostep
+    b. Teraz musimy umozliwic przekazanie loggedIn state w dol po drzewie komponentow az do komponentu
+        w ktorym bedziemy ten stan manipulowac. 
+        Zaczynamy od zadeklarowania propsow w tagu Header - <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+    d. Implementujemy warunek dla renderowania odpowiedniej strony -
+        {loggedIn ? <Home /> : <HomeGuest />}
 
-W tej chwili pozostaniemy zalogowani mimo odswiezenia czy zamkniecia okna przegladarki.
-Niestety pozostaniemy rowniez zalogowani po wylogowaniu i np. odswiezeniu okna.
-Dzieje sie tak, poniewaz caly czas mamy wartosc complexAppToken zapisana w localStorage
-Aby tego uniknac robimy nastepujace Zmieniamy
-
-3. HeaderLoggedIn.tsx
-    a. Tworzymy funkcje handleLogout w ktorej zmienimy stan loggedIn to false oraz usuniemy wlasciwosci z localStore
-    b. Nastepnie przypisujemy te funkcje do onClick event w buttonie Log Out
+2. Header.tsx
+    c. Przekazujemy loggedIn i setLoggedIn jako props z kopmonentu App
+    
