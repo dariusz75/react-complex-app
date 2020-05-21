@@ -1,1 +1,14 @@
-All logic in Createpost component
+1. ViewSinglepost.tsx
+    a. utworzony nowy komponent
+
+2. App.tsx
+    b. Zdefiniowany nowy rout - 
+        <Route path="/post/:id">
+            <ViewSinglePost />
+          </Route>
+
+3. CreatePost.tsx
+    W tym komponencie implementujemy przekierowywanie do nowo utworzonego postu.
+    c. Importujemy modul withRouter
+    d. Implementujemy logike w funkcji handleSubmit
+

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { withRouter } from "react-router-dom";
 
 import Page from "./Page";
 
-const CreatePost = () => {
+const CreatePost = (props: any) => {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
 
@@ -16,6 +17,8 @@ const CreatePost = () => {
         body: body,
         token: localStorage.getItem("complexAppToken"),
       });
+      // Redirect to new post url
+      props.history.push(`/post/${response.data}`);
       console.log("New post was created");
     } catch (error) {
       console.log("There was a problem");
@@ -64,4 +67,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default withRouter(CreatePost);
