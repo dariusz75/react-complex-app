@@ -5,4 +5,14 @@
         localStorage.setItem("complexAppAvatar", response.data.avatar);
 
 2. Header.tsx 
-    a. 
+    a. Zmieniamy ustawienia statu loggedIn na wartosc complexAppToken pobraana z localStorage -
+    const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("complexAppToken")));
+
+W tej chwili pozostaniemy zalogowani mimo odswiezenia czy zamkniecia okna przegladarki.
+Niestety pozostaniemy rowniez zalogowani po wylogowaniu i np. odswiezeniu okna.
+Dzieje sie tak, poniewaz caly czas mamy wartosc complexAppToken zapisana w localStorage
+Aby tego uniknac robimy nastepujace Zmieniamy
+
+3. HeaderLoggedIn.tsx
+    a. Tworzymy funkcje handleLogout w ktorej zmienimy stan loggedIn to false oraz usuniemy wlasciwosci z localStore
+    b. Nastepnie przypisujemy te funkcje do onClick event w buttonie Log Out

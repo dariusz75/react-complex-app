@@ -1,6 +1,13 @@
 import React from "react";
 
 const HeaderLoggedIn = (props: any) => {
+  const handleLogout = () => {
+    props.setLoggedIn(false);
+    localStorage.removeItem("complexAppToken");
+    localStorage.removeItem("complexAppUsername");
+    localStorage.removeItem("complexAppAvatar");
+  };
+
   return (
     <div className="flex-row my-3 my-md-0">
       <a href="#" className="text-white mr-2 header-search-icon">
@@ -19,10 +26,7 @@ const HeaderLoggedIn = (props: any) => {
       <a className="btn btn-sm btn-success mr-2" href="/create-post">
         Create Post
       </a>
-      <button
-        className="btn btn-sm btn-secondary"
-        onClick={() => props.setLoggedIn(false)}
-      >
+      <button className="btn btn-sm btn-secondary" onClick={handleLogout}>
         Sign Out
       </button>
     </div>
