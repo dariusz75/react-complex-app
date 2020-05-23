@@ -20,6 +20,7 @@ const CreatePost = (props: any) => {
       // Redirect to new post url
       props.history.push(`/post/${response.data}`);
       console.log("New post was created");
+      props.addFlashMessage("The new post has been added");
     } catch (error) {
       console.log("There was a problem");
       console.log(error);

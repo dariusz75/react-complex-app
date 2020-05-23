@@ -1,14 +1,19 @@
-1. ViewSinglepost.tsx
-    a. utworzony nowy komponent
+1. FlashMessages.tsx
+    a. Tworzymy plik
+    f. Implementujemy logike dynamicznego przypisywania tresci powiadomien, przekazujac propsy
+        a nastepnie mapujac tablice props.messages
+    Teraz jestesmy gotowi do uzycia funkcji addFlashMessage z dowolnego komponentu
+    g. Przypisujemy komponentowi CreatePost propsy odwolujace sie do funkcji addFlashMessage
+        <CreatePost addFlashMessage={addFlashMessage} />
 
 2. App.tsx
-    b. Zdefiniowany nowy rout - 
-        <Route path="/post/:id">
-            <ViewSinglePost />
-          </Route>
-
+    b. Renderujemy Flashmessages component ktory bedzie odpowiadal za wyswietlanie powiadomien w aplikacji
+    c. Tworzymy stan flashMessages
+    d. Tworzymy funkcje addFlashMessage
+    e. Przypisujemy komponentowi FlashMessages props ze stanem flashMessages - 
+        <FlashMessages messages={flashMessages} />
+    
 3. CreatePost.tsx
-    W tym komponencie implementujemy przekierowywanie do nowo utworzonego postu.
-    c. Importujemy modul withRouter
-    d. Implementujemy logike w funkcji handleSubmit
-
+    h. Implementujemy logike wywolania funkcji, zaraz po przekierowaniu na strone swiezo utworzonego postu
+        props.addFlashMessage("The new post has been added")
+    
