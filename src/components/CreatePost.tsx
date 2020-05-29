@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
+
+import ExampleContext from "../ExampleContext";
 
 import Page from "./Page";
 
 const CreatePost = (props: any) => {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
+  const addFlashMessage: any = useContext(ExampleContext);
 
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
@@ -17,10 +20,10 @@ const CreatePost = (props: any) => {
         body: body,
         token: localStorage.getItem("complexAppToken"),
       });
+      addFlashMessage("The new post has been added");
       // Redirect to new post url
       props.history.push(`/post/${response.data}`);
       console.log("New post was created");
-      props.addFlashMessage("The new post has been added");
     } catch (error) {
       console.log("There was a problem");
       console.log(error);

@@ -1,19 +1,7 @@
-1. FlashMessages.tsx
+1. ExampleContext.tsx
     a. Tworzymy plik
-    f. Implementujemy logike dynamicznego przypisywania tresci powiadomien, przekazujac propsy
-        a nastepnie mapujac tablice props.messages
-    Teraz jestesmy gotowi do uzycia funkcji addFlashMessage z dowolnego komponentu
-    g. Przypisujemy komponentowi CreatePost propsy odwolujace sie do funkcji addFlashMessage
-        <CreatePost addFlashMessage={addFlashMessage} />
 
 2. App.tsx
-    b. Renderujemy Flashmessages component ktory bedzie odpowiadal za wyswietlanie powiadomien w aplikacji
-    c. Tworzymy stan flashMessages
-    d. Tworzymy funkcje addFlashMessage
-    e. Przypisujemy komponentowi FlashMessages props ze stanem flashMessages - 
-        <FlashMessages messages={flashMessages} />
-    
-3. CreatePost.tsx
-    h. Implementujemy logike wywolania funkcji, zaraz po przekierowaniu na strone swiezo utworzonego postu
-        props.addFlashMessage("The new post has been added")
+    b. Implementujemy logike dla uzycia createContext()
+
     
