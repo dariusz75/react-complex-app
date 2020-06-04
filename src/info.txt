@@ -1,7 +1,34 @@
+Using Context
+
 1. ExampleContext.tsx
-    a. Tworzymy plik
+    a. Implementujemy context - 
+    
+    import { createContext } from "react";
+    const ExampleContext = createContext();
+    export default ExampleContext;  
 
 2. App.tsx
     b. Implementujemy logike dla uzycia createContext()
+        Aby tego dokonac umieszczamy zwracana wartosc komponentu App
+        w Provider naszego ExampleContent podajac w propsach value wartosc 
+        do ktorej bedziemy chcieli odwolywac sie w dowolnym komponencie aplikacji.
+        W naszym przypadku bedzie to metoda addFlashMessage - 
+        <ExampleContext.Provider value={addFlashMessage}>
+
+    c. W tagu <CreatePost /> usuwamy propsy a nastepnie przechodimy do CreatePost.tsx
+        poniewaz to w nim beziemy uzywac nasz Context
+
+3. CreatePost.tsx
+    d. Importujemy useContext
+    e. Deklarujemy useContext, przypisujac go do stalej addFlashMessage a 
+        jako argument podajac contextem ktory chcemy uzyc -  
+        const addFlashMessage: any = useContext(ExampleContext);
+    f. W metodzie handleSubmit usuwamy props sprzed addFlashMessage, 
+        poniewaz od teraz odwolujemy sie bezposrednio do metody addFlashMessage
+        zadeklarowanej w App.tsx a do ktorej mamy dostep poniewaz podalismy jej wartosc 
+        w providerze contextu - <ExampleContext.Provider value={addFlashMessage}>
+    
+
+
 
     
