@@ -13,11 +13,7 @@ const Header = (props: any) => {
             ComplexApp
           </Link>
         </h4>
-        {props.loggedIn ? (
-          <HederLoggedIn setLoggedIn={props.setLoggedIn} />
-        ) : (
-          <HeaderLoggeOut setLoggedIn={props.setLoggedIn} />
-        )}
+        {props.loggedIn ? <HederLoggedIn /> : <HeaderLoggeOut />}
       </div>
     </header>
   );

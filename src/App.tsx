@@ -30,7 +30,7 @@ function App() {
   };
 
   return (
-    <ExampleContext.Provider value={addFlashMessage}>
+    <ExampleContext.Provider value={{ addFlashMessage, setLoggedIn }}>
       <div className="App">
         <BrowserRouter>
           <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />

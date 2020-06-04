@@ -9,7 +9,7 @@ import Page from "./Page";
 const CreatePost = (props: any) => {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
-  const addFlashMessage: any = useContext(ExampleContext);
+  const { addFlashMessage }: any = useContext(ExampleContext);
 
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();

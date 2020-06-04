@@ -1,34 +1,49 @@
-Using Context
+W tej lekcji ponownie uzyjemy contextu.
+Uzyjemy go do manipulacji stanu loggedIn, ktory zadeklarowalismy a komponencie App.tsx
 
-1. ExampleContext.tsx
-    a. Implementujemy context - 
+1. App.tsx
+    a. Abysmy mogli manipulowac stanem loggedIn z dowolnego komponentu,
+        musimy udostepnic metode setLoggedIn. 
+        Aby to zrobic, dodajemy ja do wartosci providera - 
+        <ExampleContext.Provider value={{addFlashMessage, setLoggedIn}}>
+
+        W tej chwili zepsulismy ogike dzialania dla 
+        const addFlashMessage: any = useContext(ExampleContext) 
+        w pliku CreatePost.tsx.
+
+        Aby to naprawic musimy zderstrukturyzowac useContext(ExampleContext),
+        poniewaz jego value to juz nie pojedyncze value={addFlashMessage} 
+        a obiekt z dwoma wartosciami - value={{addFlashMessage, setLoggedIn}}
+
+        W tym celu przechodzimy do CreatePost.tsx
     
-    import { createContext } from "react";
-    const ExampleContext = createContext();
-    export default ExampleContext;  
+2. CreatePost.tsx
+    b. Stala const addFlashMessage: any = useContext(ExampleContext);
+        zmieniamy na const { addFlashMessage }: any = useContext(ExampleContext)
+        czyli destrukturyzujemy, poniewaz nie pobiera ona juz pojedyczej wartosci
 
-2. App.tsx
-    b. Implementujemy logike dla uzycia createContext()
-        Aby tego dokonac umieszczamy zwracana wartosc komponentu App
-        w Provider naszego ExampleContent podajac w propsach value wartosc 
-        do ktorej bedziemy chcieli odwolywac sie w dowolnym komponencie aplikacji.
-        W naszym przypadku bedzie to metoda addFlashMessage - 
-        <ExampleContext.Provider value={addFlashMessage}>
+Teraz mozemy dzialc dalej nad zaimplementowaniem setLoggedIn
 
-    c. W tagu <CreatePost /> usuwamy propsy a nastepnie przechodimy do CreatePost.tsx
-        poniewaz to w nim beziemy uzywac nasz Context
+3. Header.tsx
+    c. Z tagow HederLoggedIn i HederLoggedOut usuwamy propsy setLoggedIn
+        Czyli zamiast
+        {props.loggedIn ? (
+          <HederLoggedIn setLoggedIn={props.setLoggedIn} />
+        ) : (
+          <HeaderLoggeOut setLoggedIn={props.setLoggedIn} />
+        )} 
+        pozostawiamy 
+        {props.loggedIn ? <HederLoggedIn /> : <HeaderLoggeOut />}
 
-3. CreatePost.tsx
-    d. Importujemy useContext
-    e. Deklarujemy useContext, przypisujac go do stalej addFlashMessage a 
-        jako argument podajac contextem ktory chcemy uzyc -  
-        const addFlashMessage: any = useContext(ExampleContext);
-    f. W metodzie handleSubmit usuwamy props sprzed addFlashMessage, 
-        poniewaz od teraz odwolujemy sie bezposrednio do metody addFlashMessage
-        zadeklarowanej w App.tsx a do ktorej mamy dostep poniewaz podalismy jej wartosc 
-        w providerze contextu - <ExampleContext.Provider value={addFlashMessage}>
-    
+Teraz zeby zamiast uzycia setLoggedIn uzyc context, musimy zaimplementowac context w komponentach: HederLoggedIn i HederLoggedOut
 
+3. HederLoggedIn.tsx
+    d. Importujemy useContext oraz ExampleContext
+    e. Deklarujemy dostep do metody setLoggedIn
+        const { setLoggedIn } = useContext(ExampleContext);
+    f. W metodzie handleLogout, w props.setLoggedIn(false) usuwamy props, poniewaz nie przekazujemy
+        juz dostepu przez props a przez context
 
-
+4. HederLoggedOut.tsx
+    g. Robimy to co w pliku HederLoggedIn.tsx
     
